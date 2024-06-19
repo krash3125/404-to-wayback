@@ -18,7 +18,7 @@
 2. **Install the Script**
 
    - Create a new script in Tampermonkey/Greasemonkey.
-   - Copy and paste the code from the `404-to-archive-redirecter.user.js` file into the script editor.
+   - Copy and paste the code from the `script.js` file into the script editor.
    - Save the script.
 
 ## Usage
