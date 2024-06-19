@@ -33,9 +33,9 @@ Here is the script you need to use:
 // ==UserScript==
 // @name         404 to Archive Redirecter
 // @namespace    http://tampermonkey.net/
-// @version      0.1
-// @description  Redirects 404 pages to the Internet Archive
-// @author       Your Name
+// @version      1.0
+// @description  Redirects 404 Not Found pages to the Internet Archive Wayback Machine
+// @author       https://github.com/krash3125
 // @match        *://*/*
 // @grant        none
 // ==/UserScript==
@@ -43,10 +43,16 @@ Here is the script you need to use:
 (function() {
     'use strict';
 
-    if (document.title.includes("404") || document.body.textContent.includes("Not Found")) {
-        let currentUrl = window.location.href;
-        window.location.href = `https://web.archive.org/web/*/${currentUrl}`;
+    const notFoundTexts = ["404", "Not Found"];
+    const bodyText = document.body.innerText;
+    const is404 = notFoundTexts.some(text => bodyText.includes(text));
+
+    if (is404) {
+        const currentUrl = window.location.href;
+        const archiveUrl = `https://web.archive.org/web/*/${currentUrl}`;
+        window.location.replace(archiveUrl);
     }
 })();
+```
 
 
